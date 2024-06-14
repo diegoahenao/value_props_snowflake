@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: int_insights_prints_last_week
+    description: Analisis de los prints de la última semana teniendo en cuenta los clicks, prints y pagos realizados por el usuario
+    columns:
+      - name: day
+        description: Fecha en que se mostró la value props en los prints de la última semana.
+        test:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: position
+        description: Posición en el carrusel de la app en que se mostró la value props en los prints de última semana.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: value_prop
+        description: Propuesta de valor mostrada en los prints de la última semana.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: string
+      - name: user_id
+        description: Id del usuario
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: if_click
+        description: Si el usuario hizo click en la value props
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: view_count_value_prop
+        description: Cantidad de veces que el usuario vio cada value prop en las 3 semanas previas a ese print.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: clicks_count_value_prop
+        description: Cantidad de veces que el usuario clickeo cada value prop en las 3 semanas previas a ese print.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: payment_count_value_prop
+        description: Cantidad de pagos que el usuario realizó para cada value prop en las 3 semanas previas a ese print.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: total_value_prop
+        description: Importes acumulados que el usuario gasto para cada value prop en las 3 semanas previas a ese print.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: float64

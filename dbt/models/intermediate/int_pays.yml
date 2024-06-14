@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: int_pays
+    description: Historial de 1 mes de pagos realizados por los usuarios.
+    columns:
+      - name: pay_date
+        description: Fecha en que se realizó el pago.
+        test:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: total
+        description: Pago realizado.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: float64
+      - name: value_prop
+        description: Propuesta de valor.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: string
+      - name: user_id
+        description: Id del usuario
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
