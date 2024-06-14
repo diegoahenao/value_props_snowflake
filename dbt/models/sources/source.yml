@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: value_props
+    schema: raw  
+    tables:
+      - name: taps
+      - name: prints
+      - name: pays
