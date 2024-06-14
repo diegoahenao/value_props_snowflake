@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: int_taps
+    description: Historial de 1 mes de value props que fueron clickeadas por un usuario.
+    columns:
+      - name: day
+        description: Fecha en que se realizó el click.
+        test:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: position
+        description: Posición en el carrusel de la app en que estaba la value props.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+      - name: value_prop
+        description: Propuesta de valor.
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: string
+      - name: user_id
+        description: Id del usuario
+        test: 
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
