@@ -4,3 +4,8 @@ __pycache__/
 
 # Archivos de entorno
 .env
+
+# Archivos de DBT
+logs/
+target/
+dbt_packages/
